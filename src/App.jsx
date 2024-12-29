@@ -13,7 +13,7 @@ function App() {
 
   const newsApi = async () => {
     try {
-      let proxyUrl = "http://localhost:5173/";
+      let proxyUrl = "https://localhost:5173/";
       //  proxyUrl = '';
 
       const news = await axios.get(
