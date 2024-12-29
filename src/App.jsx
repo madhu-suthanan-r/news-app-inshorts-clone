@@ -13,11 +13,28 @@ function App() {
 
   const newsApi = async () => {
     try {
-      let proxyUrl = "https://localhost:5173/";
+      let proxyUrl = "https://cors-anywhere.herokuapp.com/";
       //  proxyUrl = '';
 
       const news = await axios.get(
-        `${proxyUrl}https://newsapi.org/v2/top-headlines?country=us&apiKey=${import.meta.env.VITE_APP_API_KEY}&pageSize=${loadMore}&category=${category}`
+        `${proxyUrl}https://newsapi.org/v2/top-headlines?country=us&apiKey=${import.meta.env.VITE_APP_API_KEY}&pageSize=${loadMore}&category=${category}`, {
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Encoding': 'gzip, deflate, br, zstd',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Connection': 'keep-alive',
+            'Host': 'cors-anywhere.herokuapp.com',
+            'Origin': 'http://localhost:5173',
+            'Referer': 'http://localhost:5173/',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'cross-site',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+          }
+        }
       );
       console.log(news);
       setNewsArray(news.data.articles);
